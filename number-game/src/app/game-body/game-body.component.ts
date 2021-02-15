@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameBodyComponent implements OnInit {
 
+  cardQuote: string = 'Everything around you is numbers';
+
   constructor() { }
 
   ngOnInit(): void {
