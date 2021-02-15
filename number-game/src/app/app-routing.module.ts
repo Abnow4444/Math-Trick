@@ -6,7 +6,7 @@ import { GameBodyComponent } from './game-body/game-body.component';
 const routes: Routes = [
   {path: 'game', component: GameBodyComponent},
   {path: '', pathMatch: 'full', redirectTo: 'game'},
-  {path: 'error', pathMatch: 'full', component: ErrorComponent}
+  {path: '**', pathMatch: 'full', component: ErrorComponent}
 ];
 
 @NgModule({
