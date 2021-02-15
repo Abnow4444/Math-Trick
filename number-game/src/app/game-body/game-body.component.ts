@@ -12,6 +12,7 @@ export class GameBodyComponent implements OnInit {
   cardImageUrl: string = '';
   cardDescription: string = '';
   cardCounter: number = 0;
+  generatorNumberSize: number = 4;
 
   cardArr: any = [
     {
