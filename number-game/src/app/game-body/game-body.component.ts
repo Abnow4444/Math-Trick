@@ -8,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class GameBodyComponent implements OnInit {
 
   cardQuote: string = 'Everything around you is numbers';
+  cardImageUrl: string = 'assets/image_1.PNG';
+  imageWidth: number = 10;
+  cardDescription: string = '~~~ Click Next to Start ~~~'
 
   constructor() { }
 
