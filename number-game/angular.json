@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "number-game"
+  "defaultProject": "number-game",
+  "cli": {
+    "analytics": "2ac7901e-19ee-475c-a9ae-56d657b3f3c8"
+  }
 }
