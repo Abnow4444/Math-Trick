@@ -4,19 +4,26 @@ import { CardDataService } from '../card-data.service';
 @Component({
   selector: 'math-game-body',
   templateUrl: './game-body.component.html',
-  styleUrls: ['./game-body.component.css']
+  styleUrls: ['./game-body.component.css'],
 })
 export class GameBodyComponent implements OnInit {
+  imageWidth: number = 10; //Width of the images displayed inside the card
 
-  imageWidth: number = 10;
+  /* Card Properties */
   cardQuote: string = '';
   cardImageUrl: string = '';
   cardDescription: string = '';
   cardCounter: number = 0;
-  generatorNumberSize: number = 4;
+  generatorNumberFontSize: number = 4;// Generator number font-size
+  randomGeneratorNumber: number = 1; // Random Number used on generator
+  setInterval: any; //To handle Interval
+  highlightSelectedGenerator: boolean = false;
 
+
+  //Empty Array
   cardArr: any = [];
 
+  /* Hard-coded Data for initial stage */
   // cardArr: any = [
   //   {
   //     "cardId": 1,
@@ -50,47 +57,67 @@ export class GameBodyComponent implements OnInit {
   //   }
   // ]
 
-  constructor(private cardData: CardDataService) { }
+  constructor(private cardData: CardDataService) {}
 
   ngOnInit(): void {
-    this.getCardDataFromDB();
+    this.getCardDataFromDB(); //CardService to get the Card-Data
   }
 
-  getCardDataFromDB(): void{
-    this.cardData.getCardData().subscribe(
-      res => {
-        this.cardArr = res;
-        this.populateCardData();
-      }
-    )
+  //This method subscribes the Observable from the Card-data service and populates the data into empty array
+  getCardDataFromDB(): void {
+    this.cardData.getCardData().subscribe((res) => {
+      this.cardArr = res; //Copied response to Card Array
+      this.populateCardData();
+    });
   }
 
-  populateCardData(): void{
+  //This method populates Data into Cards
+  populateCardData(): void {
     this.cardCounter = 0;
     this.cardQuote = this.cardArr[this.cardCounter].cardQuote;
     this.cardImageUrl = this.cardArr[this.cardCounter].cardImageUrl;
     this.cardDescription = this.cardArr[this.cardCounter].cardDescription;
   }
 
+  // Onclick of Next button execute this method
+  nextCard(): void {
+    if (this.cardCounter < 4) { // 4 is the Card-Array Limit
+      this.cardCounter++; //Increment the counter, since we are moving forward
+      this.setCardDetails(this.cardCounter);// call this method to set card values based on their Id
+    }
+  }
 
+  // Onclick of Back button execute this method
+  goBack(): void {
+    if (this.cardCounter > 0) { // 0 is the initial Value(To Avoid Error)
+      this.cardCounter--; // Decrement the counter, since we are moving backward
+      this.setCardDetails(this.cardCounter);// call this method to set card values based on their Id
+      this.highlightSelectedGenerator = false;
+    }
+  }
 
-  setCardDetails(counter: number): void{
+  //This method sets data into the card based on the provided Id
+  setCardDetails(counter: number): void {
     this.cardQuote = this.cardArr[counter].cardQuote;
     this.cardImageUrl = this.cardArr[counter].cardImageUrl;
     this.cardDescription = this.cardArr[counter].cardDescription;
   }
 
-  nextCard(): void{
-    if(this.cardCounter < 4){
-      this.cardCounter++;
-      this.setCardDetails(this.cardCounter);
-    }
+  //This method will setInterval for every 200ms to call startGenerator function
+  callGenerator(): void{
+    this.setInterval = setInterval( () => this.startGenerator(), 200);
   }
 
-  goBack(): void{
-    if(this.cardCounter > 0){
-      this.cardCounter--;
-      this.setCardDetails(this.cardCounter);
-    }
+  //This method will provide Random numbers between 1 to 10 and makes the highlighterBox to false
+  startGenerator(): void{
+    let someRandomNumber = Math.floor(Math.random()*10 + 1);
+    this.randomGeneratorNumber = someRandomNumber;
+    this.highlightSelectedGenerator = false;
+  }
+
+  //This method will stop the generator and makes the highlighterBox to true
+  stopGenerator(): void{
+    clearInterval(this.setInterval);
+    this.highlightSelectedGenerator = true;
   }
 }
