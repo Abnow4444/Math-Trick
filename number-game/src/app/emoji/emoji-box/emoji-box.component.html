@@ -1,0 +1,8 @@
+<div class="container mt-5 mb-5">
+  <div class="row">
+    <div class="col-md-2 card p-4 text-center shadow-lg border-warning" *ngFor = "let e of emojiArr.slice(0, 102); let i = index">
+      {{ (i+1) + "." + e.char}}
+    </div>
+  </div>
+</div>
+

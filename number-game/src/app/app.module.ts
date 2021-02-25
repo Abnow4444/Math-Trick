@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { GameBodyComponent } from './game-body/game-body.component';
 import { ErrorComponent } from './error/error.component';
+import { EmojiModule } from './emoji/emoji.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ErrorComponent } from './error/error.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    EmojiModule
   ],
   providers: [],
   bootstrap: [AppComponent]

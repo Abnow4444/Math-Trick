@@ -23,7 +23,7 @@ export class GameBodyComponent implements OnInit {
   //Empty Array
   cardArr: any = [];
 
-  /* Hard-coded Data for initial stage */
+  /* Hard-coded Data initially */
   // cardArr: any = [
   //   {
   //     "cardId": 1,
