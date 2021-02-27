@@ -9,6 +9,8 @@ import { FooterComponent } from './footer/footer.component';
 import { GameBodyComponent } from './game-body/game-body.component';
 import { ErrorComponent } from './error/error.component';
 import { EmojiModule } from './emoji/emoji.module';
+import { LoginComponent } from './login/login.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { EmojiModule } from './emoji/emoji.module';
     HeaderComponent,
     FooterComponent,
     GameBodyComponent,
-    ErrorComponent
+    ErrorComponent,
+    LoginComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
