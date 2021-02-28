@@ -8,9 +8,9 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { GameBodyComponent } from './game-body/game-body.component';
 import { ErrorComponent } from './error/error.component';
-import { EmojiModule } from './emoji/emoji.module';
 import { LoginComponent } from './login/login.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { EmojiBoxComponent } from './emoji-box/emoji-box.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +20,13 @@ import { UserListComponent } from './user-list/user-list.component';
     GameBodyComponent,
     ErrorComponent,
     LoginComponent,
-    UserListComponent
+    UserListComponent,
+    EmojiBoxComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    EmojiModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

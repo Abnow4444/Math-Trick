@@ -1,0 +1,21 @@
+<div class="container mt-5 mb-5">
+  <div class="row" *ngIf = "!toggleBoardAndResultEmoji">
+    <div class="col-md-2 card p-4 text-center shadow-lg border-warning" *ngFor = "let e of emojiArr.slice(0, 102); let i = index">
+      {{ (i+1) + "." + e.char}}
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center" *ngIf = "toggleBoardAndResultEmoji">
+    <div class="card shadow-lg" style="border: 10px solid lightgoldenrodyellow;">
+      <div class="row p-2">
+        <div class="col-lg-6">
+          <p style="font-size: 5rem;">{{randomEmoji}}</p>
+        </div>
+        <div class="col-lg-6">
+          <p><span class="font-weight-bolder">Name:</span> {{randomEmojiName}}</p>
+          <p><span class="font-weight-bolder">Group: </span> {{randomEmojigroup}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

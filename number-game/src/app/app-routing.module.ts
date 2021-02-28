@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EmojiBoxComponent } from './emoji/emoji-box/emoji-box.component';
+import { EmojiBoxComponent } from './emoji-box/emoji-box.component';
 import { ErrorComponent } from './error/error.component';
 import { GameBodyComponent } from './game-body/game-body.component';
 import { LoginComponent } from './login/login.component';

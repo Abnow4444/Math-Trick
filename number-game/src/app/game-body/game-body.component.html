@@ -1,32 +1,40 @@
-<div class="container-fluid mt-5">
-    <div class="card shadow">
-        <div class="card-header text-center">
-            <q class="font-weight-bolder">{{cardQuote}}</q>
-        </div>
-        <div class="card-body text-center">
-            <img [src]=" cardImageUrl === 'NOIMAGE' ? '' : cardImageUrl " [style.width.rem]="imageWidth">
-            <div *ngIf= "cardImageUrl === 'NOIMAGE' ? true : false">
-              <div class="row d-flex justify-content-center">
-                <p [style.font-size.rem]="generatorNumberFontSize" style="font-weight: 800;" [ngClass]="{'border border-warning pl-5 pr-5 bg-success text-white': highlightSelectedGenerator}">{{randomGeneratorNumber}}</p>
-              </div>
-                <div class="row d-flex justify-content-center">
-                  <button class="btn btn-outline-secondary" (click)="callGenerator()">Start</button>
-                  <button class="btn btn-outline-secondary ml-1" (click)="stopGenerator()">Stop</button>
-                </div>
-            </div>
-        </div>
-        <div class="card-footer">
-            <div class="row d-flex justify-content-center">
-                {{cardDescription}}
-            </div>
-            <div class="row">
-                <div class="mr-auto">
-                    <button class="btn btn-outline-secondary" (click)="goBack()"><i class="fa fa-chevron-left mr-1"></i>Back</button>
-                </div>
-                <div class="ml-auto">
-                    <button class="btn btn-outline-secondary" (click)="nextCard()">Next<i class="fa fa-chevron-right ml-1"></i></button>
-                </div>
-            </div>
-        </div>
+<div class="container-fluid mt-5 mb-5">
+  <div class="card shadow">
+    <div class="card-header text-center">
+      <q class="font-weight-bolder">{{cardQuote}}</q>
     </div>
+    <div class="card-body text-center" *ngIf="showEmojiBoard">
+      <img [src]=" cardImageUrl === 'NOIMAGE' ? '' : cardImageUrl " [style.width.rem]="imageWidth">
+      <div *ngIf="cardImageUrl === 'NOIMAGE' ? true : false">
+        <div class="row d-flex justify-content-center">
+          <p [style.font-size.rem]="generatorNumberFontSize" style="font-weight: 800;"
+            [ngClass]="{'border border-warning pl-5 pr-5 bg-success text-white': highlightSelectedGenerator}">
+            {{randomGeneratorNumber}}</p>
+        </div>
+        <div class="row d-flex justify-content-center">
+          <button class="btn btn-outline-secondary" (click)="callGenerator()">Start</button>
+          <button class="btn btn-outline-secondary ml-1" (click)="stopGenerator()">Stop</button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf = "!showEmojiBoard">
+      <math-emoji-box [userGeneratedNumber] = 'randomGeneratorNumber' [toggleBoardAndResultEmoji] = 'finalPass'></math-emoji-box>
+    </div>
+    <div class="card-footer">
+      <div class="row d-flex justify-content-center">
+        {{cardDescription}}
+      </div>
+      <div class="row">
+        <div class="mr-auto">
+          <button *ngIf="!hideButtons" class="btn btn-outline-secondary" (click)="goBack()"><i
+              class="fa fa-chevron-left mr-1"></i>Back</button>
+          <button *ngIf="hideButtons" class="btn btn-outline-success" [routerLink] = "['/login']">Play Again</button>
+        </div>
+        <div class="ml-auto">
+          <button *ngIf="!hideButtons" class="btn btn-outline-secondary" (click)="nextCard()">Next<i
+              class="fa fa-chevron-right ml-1"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

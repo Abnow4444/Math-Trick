@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CardDataService } from '../card-data.service';
 
 @Component({
@@ -18,6 +19,9 @@ export class GameBodyComponent implements OnInit {
   randomGeneratorNumber: number = 1; // Random Number used on generator
   setInterval: any; //To handle Interval
   highlightSelectedGenerator: boolean = false;
+  showEmojiBoard = true;
+  finalPass: boolean = false;
+  hideButtons: boolean = false;
 
 
   //Empty Array
@@ -81,19 +85,46 @@ export class GameBodyComponent implements OnInit {
 
   // Onclick of Next button execute this method
   nextCard(): void {
-    if (this.cardCounter < 4) { // 4 is the Card-Array Limit
-      this.cardCounter++; //Increment the counter, since we are moving forward
-      this.setCardDetails(this.cardCounter);// call this method to set card values based on their Id
+    if (this.cardCounter < this.cardArr.length-1) { // 4 is the Card-Array Limit
+      this.cardCounter++;
+      this.setCardDetails(this.cardCounter);
+      // console.log(this.cardCounter);
+      if(this.cardCounter === 5){
+        this.showEmojiBoard = false;
+      }
+      if(this.cardCounter === 6){
+        this.finalPass = true;
+        this.hideButtons = true;
+      }
+      // console.log(this.hideButtons)
     }
   }
 
   // Onclick of Back button execute this method
   goBack(): void {
-    if (this.cardCounter > 0) { // 0 is the initial Value(To Avoid Error)
-      this.cardCounter--; // Decrement the counter, since we are moving backward
-      this.setCardDetails(this.cardCounter);// call this method to set card values based on their Id
-      this.highlightSelectedGenerator = false;
+    // if (this.cardCounter > 0) { // 0 is the initial Value(To Avoid Error)
+    //   this.cardCounter--; // Decrement the counter, since we are moving backward
+    //   if(this.cardCounter < 3){
+    //     this.setCardDetails(this.cardCounter);// call this method to set card values based on their Id
+    //     this.highlightSelectedGenerator = false;
+    //     this.showEmojiBoard = true;
+    //   }
+    //   if(this.cardCounter < 5){
+    //     this.finalPass = false;
+    //   }
+    // }
+    if(this.cardCounter > 0){
+      this.cardCounter--;
+      this.setCardDetails(this.cardCounter);
     }
+    if(this.cardCounter === 4){
+      this.showEmojiBoard = true;
+    }
+    if(this.cardCounter === 5){
+      this.finalPass = false;
+      this.hideButtons = false;
+    }
+    // console.log(this.cardCounter);
   }
 
   //This method sets data into the card based on the provided Id
