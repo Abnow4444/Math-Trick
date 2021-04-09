@@ -22,7 +22,7 @@
     </div>
     <div class="card-footer">
       <div class="row d-flex justify-content-center">
-        {{cardDescription}}
+        {{cardDescription}}<span *ngIf="cardCounter === 1">{{" " + exampleNumber}}</span><span *ngIf="cardCounter === 2">{{" " + x + "" + y}} => {{x}} + {{y}} = {{z}}</span><span *ngIf="cardCounter === 3">{{exampleNumber}} - {{z}} = {{resultVal}}</span>
       </div>
       <div class="row">
         <div class="mr-auto">

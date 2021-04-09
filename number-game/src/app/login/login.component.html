@@ -1,4 +1,4 @@
-<div class="card mt-5 m-3 shadow-sm">
+<!-- <div class="card mt-5 m-3 shadow-sm">
 <div class="card-header">
   Login Form
 </div>
@@ -11,6 +11,41 @@
     <button class="btn btn-outline-primary" (click) = "addUser()">Login</button>
   </div>
 </div>
+</div> -->
+
+
+<!-- Template-driven Form -->
+
+<div class="containerfluid mt-5" *ngIf="showLoginPage">
+  <div class="card">
+    <div class="card-header">
+      Login Form
+    </div>
+    <div class="card-body ml-2">
+      <form novalidate (ngSubmit)="addUser(loginForm)" #loginForm="ngForm">
+        <div class="row">
+          <label for="nameId">Name: </label><input id="nameId" placeholder="Enter your name here..." required minlength="4" type="text" name="username" [(ngModel)]="customer.firstName" #firstNameVar="ngModel" [ngClass] = "{'is-invalid' : (firstNameVar?.touched || firstNameVar?.dirty) && !firstNameVar.valid}" class="ml-2">
+          <span class="invalid-feedback">
+            <span *ngIf="firstNameVar.errors?.required">
+              Give your name first!!
+            </span>
+            <span *ngIf="firstNameVar.errors?.minlength">
+              Name should be of minimum 4 chars!
+            </span>
+          </span>
+        </div>
+        <div class="row mt-2">
+          <button class="btn btn-outline-primary" [disabled] = "!loginForm.valid">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
+
+<div class="container-fluid mt-5" *ngIf="!showLoginPage">
+    Loading.........<div class="spinner-border text-primary"></div>
+</div>
+
+
 
 

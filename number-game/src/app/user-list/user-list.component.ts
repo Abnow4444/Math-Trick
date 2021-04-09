@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { getInterpolationArgsLength } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserListComponent implements OnInit {
 
-  userDetailArr: any = [];
+  userDetailArr: any = []; //Sheet-Best
+  alternativeDataList: any = []; //Sheety
 
   constructor(private http: HttpClient) { }
 
@@ -17,12 +19,20 @@ export class UserListComponent implements OnInit {
   }
 
   retrieveUsers(): void{
-    this.http.get('https://sheet.best/api/sheets/86a10621-87a6-4458-8706-dfea011e1d26').subscribe(
+    // this.http.get('https://sheet.best/api/sheets/86a10621-87a6-4458-8706-dfea011e1d26').subscribe(
+    //   res => {
+    //     // console.log(res);
+    //     this.userDetailArr = res;
+    //   }
+    // ) (Sheet-Best API)
+
+    this.http.get('https://api.sheety.co/15a66da07a2c9fc3b00673d23904e9bb/users/sheet1').subscribe(
       res => {
-        // console.log(res);
-        this.userDetailArr = res;
+        this.alternativeDataList = res;
+        this.userDetailArr = this.alternativeDataList.sheet1;
       }
     )
+
   }
 
 }

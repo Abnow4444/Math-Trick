@@ -22,10 +22,16 @@ export class GameBodyComponent implements OnInit {
   showEmojiBoard = true;
   finalPass: boolean = false;
   hideButtons: boolean = false;
-
+  exampleNumber: number = 22;
+  x: any;
+  y: any;
+  z: any;
+  resultVal: any;
+  alternativeCardArr: any = []; //Sheety Api
+  disableStopBtn: boolean = false;
 
   //Empty Array
-  cardArr: any = [];
+  cardArr: any = []; //Sheet-Best Api
 
   /* Hard-coded Data initially */
   // cardArr: any = [
@@ -65,12 +71,21 @@ export class GameBodyComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCardDataFromDB(); //CardService to get the Card-Data
+
+    this.exampleNumber = Math.floor(Math.random() * 90 + 10);
+    this.x = this.exampleNumber.toString().substr(0,1);
+    this.y = this.exampleNumber.toString().substr(1);
+    this.z = parseInt(this.x) + parseInt(this.y);
+    this.resultVal = this.exampleNumber - this.z;
   }
 
   //This method subscribes the Observable from the Card-data service and populates the data into empty array
   getCardDataFromDB(): void {
     this.cardData.getCardData().subscribe((res) => {
-      this.cardArr = res; //Copied response to Card Array
+
+      this.cardArr = res; //Copied response to Card Array(Sheet Best API)
+      // this.alternativeCardArr = res; //Copied response to Card Array(Sheet Best API)
+      // this.cardArr = res; //Copied response to Card Array(Sheet Best API)
       this.populateCardData();
     });
   }
@@ -136,6 +151,7 @@ export class GameBodyComponent implements OnInit {
 
   //This method will setInterval for every 200ms to call startGenerator function
   callGenerator(): void{
+    clearInterval(this.setInterval);
     this.setInterval = setInterval( () => this.startGenerator(), 200);
   }
 

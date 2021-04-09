@@ -11,6 +11,8 @@ import { ErrorComponent } from './error/error.component';
 import { LoginComponent } from './login/login.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { EmojiBoxComponent } from './emoji-box/emoji-box.component';
+import { FormsModule } from '@angular/forms';
+import { AboutSectionComponent } from './about-section/about-section.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +23,14 @@ import { EmojiBoxComponent } from './emoji-box/emoji-box.component';
     ErrorComponent,
     LoginComponent,
     UserListComponent,
-    EmojiBoxComponent
+    EmojiBoxComponent,
+    AboutSectionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

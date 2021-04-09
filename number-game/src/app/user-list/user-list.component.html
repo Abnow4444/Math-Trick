@@ -1,6 +1,6 @@
 <div class="container-fluid mt-5">
   <div class="card">
-    <div class="card-header">Users: {{userDetailArr.length}}</div>
+    <div class="card-header">Users: <span class="text-success font-weight-bolder">{{userDetailArr.length}}</span></div>
   </div>
   <div class="card-body">
     <div class="card-deck">
@@ -13,7 +13,7 @@
           </div>
           <div class="card-body p-1">
             <p><span class="font-weight-bold">Username:</span><br> <span>{{users.username}}</span></p>
-            <p><span class="font-weight-bold">IP Addr:</span><br><span [ngClass]="users.ip === null ? 'text-success' : 'text-danger'">{{users.ip === null ? 'Secure' : users.ip}}</span></p>
+            <p><span class="font-weight-bold">IP Addr:</span><br><span class="text-danger">{{users.ip}}</span></p>
           </div>
         </div>
 
