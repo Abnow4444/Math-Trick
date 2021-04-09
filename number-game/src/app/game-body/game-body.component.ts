@@ -70,7 +70,7 @@ export class GameBodyComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCardDataFromDB(); //CardService to get the Card-Data
-
+    this.randomGeneratorNumber = Math.floor(Math.random()*10 + 1);
     this.exampleNumber = Math.floor(Math.random() * 90 + 10);
     this.x = this.exampleNumber.toString().substr(0,1);
     this.y = this.exampleNumber.toString().substr(1);
@@ -150,19 +150,21 @@ export class GameBodyComponent implements OnInit {
 
   //This method will setInterval for every 200ms to call startGenerator function
   callGenerator(): void{
-    this.setInterval = setInterval( () => this.startGenerator(), 200);
+    // this.setInterval = setInterval( () => this.startGenerator(), 200);
+    this.startGenerator();
   }
 
   //This method will provide Random numbers between 1 to 10 and makes the highlighterBox to false
   startGenerator(): void{
     let someRandomNumber = Math.floor(Math.random()*10 + 1);
     this.randomGeneratorNumber = someRandomNumber;
-    this.highlightSelectedGenerator = false;
+    // this.highlightSelectedGenerator = false;
+    this.highlightSelectedGenerator = true;
   }
 
   //This method will stop the generator and makes the highlighterBox to true
-  stopGenerator(): void{
-    clearInterval(this.setInterval);
-    this.highlightSelectedGenerator = true;
-  }
+  // stopGenerator(): void{
+  //   clearInterval(this.setInterval);
+  //   this.highlightSelectedGenerator = true;
+  // }
 }
