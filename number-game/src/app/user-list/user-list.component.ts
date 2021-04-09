@@ -11,6 +11,7 @@ export class UserListComponent implements OnInit {
 
   userDetailArr: any = []; //Sheet-Best
   alternativeDataList: any = []; //Sheety
+  userCountNum: boolean = false;
 
   constructor(private http: HttpClient) { }
 
@@ -30,6 +31,7 @@ export class UserListComponent implements OnInit {
       res => {
         this.alternativeDataList = res;
         this.userDetailArr = this.alternativeDataList.sheet1;
+        this.userCountNum = true;
       }
     )
 

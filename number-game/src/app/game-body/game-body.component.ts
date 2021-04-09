@@ -28,7 +28,6 @@ export class GameBodyComponent implements OnInit {
   z: any;
   resultVal: any;
   alternativeCardArr: any = []; //Sheety Api
-  disableStopBtn: boolean = false;
 
   //Empty Array
   cardArr: any = []; //Sheet-Best Api
@@ -151,7 +150,6 @@ export class GameBodyComponent implements OnInit {
 
   //This method will setInterval for every 200ms to call startGenerator function
   callGenerator(): void{
-    clearInterval(this.setInterval);
     this.setInterval = setInterval( () => this.startGenerator(), 200);
   }
 

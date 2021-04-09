@@ -1,24 +1,20 @@
 <div class="container-fluid mt-5">
   <div class="card">
-    <div class="card-header">Users: <span class="text-success font-weight-bolder">{{userDetailArr.length}}</span></div>
+    <div class="card-header">Users: <span class="text-success font-weight-bolder" *ngIf="userCountNum">{{userDetailArr.length}}</span><span class="text-success font-weight-bolder spinner-border spinner-border-sm text-primary"  *ngIf="!userCountNum"></span></div>
   </div>
   <div class="card-body">
-    <div class="card-deck">
 
-      <div class="row">
-
-        <div class="card h-100 p-1" style="width: 10rem;" *ngFor = "let users of userDetailArr">
-          <div class="card-header">
-            User Details
+      <div class="card-group" *ngFor = "let users of userDetailArr">
+          <div class="card h-100">
+            <div class="card-header">
+              User Details
+            </div>
+            <div class="card-body p-1">
+              <p><span class="font-weight-bold">Username:</span><br> <span>{{users.username}}</span></p>
+              <p><span class="font-weight-bold">IP Addr:</span><br><span class="text-danger">{{users.ip}}</span></p>
+            </div>
           </div>
-          <div class="card-body p-1">
-            <p><span class="font-weight-bold">Username:</span><br> <span>{{users.username}}</span></p>
-            <p><span class="font-weight-bold">IP Addr:</span><br><span class="text-danger">{{users.ip}}</span></p>
-          </div>
-        </div>
-
       </div>
 
-    </div>
   </div>
 </div>
